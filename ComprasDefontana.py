@@ -20,7 +20,7 @@ def detalle_Compra(numero):
     listaComprasAPI = "https://api.defontana.com/api/PurchaseOrder/Get"
     listaComprasAPIQS = {"number": numero}
     ComprasJson = requests.request("GET", listaComprasAPI, headers=HK.headersDefontana, params=listaComprasAPIQS).json()["purchaseOrderData"]
-    fechaEmision = ComprasJson["emissionDate"][:19]
+    fechaEmision = ComprasJson["emissionDate"][:10]+"T11:00:00"
     fechaRecepcion = ComprasJson["receiptDate"][:10]+"T11:30:00"
     proveedor = ComprasJson["providerInfo"]["name"]
     direccionProveedor = ComprasJson["providerInfo"]["address"]
