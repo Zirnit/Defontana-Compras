@@ -1,13 +1,13 @@
 import requests
 import HeadersKeys as HK
 
-# Lista idList de Trello board "Facturas"
+# Lista idList de Trello board "Compras"
 ordenes_idList = "6373dd6176f3a50ca68a4a98" # Órdenes de compra
 buscar_idList = "6373e63f22f54803ee382440" # Ir a buscar
 en_ruta_idList = "6373dd6bc5df92016c7705fe" # En ruta
 recibidos_idList = "6373dd910ea7d20154813028" # Monsalve
 
-# Etiquetas de Trello board "Facturas"
+# Etiquetas de Trello board "Compras"
 
 # Create Trello card
 def post_trello(nombre, detalle, fechaEmision, fechaRecepcion, coordenada="", idList=ordenes_idList):
@@ -15,7 +15,7 @@ def post_trello(nombre, detalle, fechaEmision, fechaRecepcion, coordenada="", id
     TrelloQS = {
     "key":HK.Tkey,
     "token":HK.Ttoken,
-    "idList":idList,        # Lista de factura en Trello
+    "idList":idList,        # Lista en Trello
     "name":nombre,          # Nombre de la tarjeta
     "desc":detalle,         # Descripción de la tarjeta
     "pos":"top",            # Posición en la cual se crea la tarjeta (top, bottom, or a positive float)
