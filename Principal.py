@@ -33,17 +33,17 @@ def cargar_trello(numero, Compras, tarjetas):
                 etiqueta = ""
                 lista = TT.buscar_idList
                 coordenada, latitude, longitude= PS.obtenerCoordenadas(despacho, comuna)
-            TT.post_trello(nombre, detalle, fechaEmision, fechaRecepcion, coordenada, idList=lista)
+            TT.post_trello(nombre, detalle, fechaEmision, fechaRecepcion, coordenada, etiqueta, idList=lista)
         if numero in tarjetas:
             estado = Compras[numero]
             if estado == "Aprobado" and fechaRecepcion == FR.hoy:
                 TT.mod_trello(tarjetas[numero], "false", TT.en_ruta_idList)
             elif estado == "Aprobado":
                 pass
-            elif estado == "Cerrado":
-                TT.mod_trello(tarjetas[numero], "false", TT.recibidos_idList)
             elif datetime.strptime(fechaEmision, "%Y-%m-%dT%H:%M:%S").date() < FR.hace1Semana and estado == "Cerrado":
                 elimina_Trello(numero, tarjetas)
+            elif estado == "Cerrado":
+                TT.mod_trello(tarjetas[numero], "false", TT.recibidos_idList)
             else:
                 print(numero, Compras[numero])
 

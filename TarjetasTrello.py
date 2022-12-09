@@ -4,13 +4,15 @@ import HeadersKeys as HK
 # Lista idList de Trello board "Compras"
 ordenes_idList = "6373dd6176f3a50ca68a4a98" # Órdenes de compra
 buscar_idList = "6373e63f22f54803ee382440" # Ir a buscar
+tablero_ruta_idList = "638f8fe605c6ea0069fbe69b" # Para ruta
 en_ruta_idList = "6373dd6bc5df92016c7705fe" # En ruta
-recibidos_idList = "6373dd910ea7d20154813028" # Monsalve
+recibidos_idList = "6373dd910ea7d20154813028" # Recibidos
 
 # Etiquetas de Trello board "Compras"
+etiqueta_Buscar = "63908b900b85c702061ab85f"
 
 # Create Trello card
-def post_trello(nombre, detalle, fechaEmision, fechaRecepcion, coordenada="", idList=ordenes_idList):
+def post_trello(nombre, detalle, fechaEmision, fechaRecepcion, coordenada="",idLabels="", idList=ordenes_idList):
     trelloCard = "https://api.trello.com/1/cards" # Dirección API
     TrelloQS = {
     "key":HK.Tkey,
@@ -24,7 +26,7 @@ def post_trello(nombre, detalle, fechaEmision, fechaRecepcion, coordenada="", id
     #"address": direccion,
     #"locationName": comuna,
     "coordinates":coordenada,
-    # "idLabels":idLabels
+    "idLabels":idLabels
     } 
     requests.request("POST", trelloCard, headers=HK.trelloHeaders, params=TrelloQS)
 
